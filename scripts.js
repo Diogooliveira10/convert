@@ -37,12 +37,11 @@ form.onsubmit = () => {
 // Function to convert currency.
 function convertCurrency(amount, price, symbol) {
     try {
-        description.textContent = `${symbol} 1 = ${price}`
-
+        // Displaying the quote for the selected currency.
+        description.textContent = `${symbol} 1 = ${formatCurrencyBRL(price)}`
 
         // Applying the class that displays the footer to show the result.
         footer.classList.add("show-result")
-
     } catch (error) {
         // Removing the footer class that is hidden.
         footer.classList.remove("show-result")
@@ -51,4 +50,13 @@ function convertCurrency(amount, price, symbol) {
         alert("Unable to convert!")
         
     }
+}
+
+// Format the currency in Brazilian Real.
+function formatCurrencyBRL(value) {
+    // Convert to number to use toLocaleString to format in the BRL standard. (R$ 00,00)
+    return Number(value).toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+    })
 }
