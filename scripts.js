@@ -3,5 +3,6 @@ const amount = document.getElementById("amount")
 
 // Manipulate the input value to receive only numbers.
 amount.addEventListener("input", () => {
-    console.log(amount.value)
+    const hasCharactersRegex = /\D+/g
+    amount.value = amount.value.replace(hasCharactersRegex, "")
 })
